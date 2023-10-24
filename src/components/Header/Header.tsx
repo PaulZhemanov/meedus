@@ -9,7 +9,7 @@ import BottomMenu from "@components/BottomMenu";
 import Text from "@components/Text";
 import { ReactComponent as BurgerIcon } from "@src/assets/icons/burger.svg";
 import { ROUTES } from "@src/constants";
-import Banner from "./Banner";
+// import Banner from "./Banner";
 
 interface IProps {}
 
@@ -107,7 +107,7 @@ const Header: React.FC<IProps> = () => {
 
   return (
     <>
-      <Banner closed={bannerClosed} setClosed={setBannerClosed} />
+      {/* <Banner closed={bannerClosed} setClosed={setBannerClosed} /> */}
       <Root>
         <a href="https://meedus.space">
           <Logo src={logo} />

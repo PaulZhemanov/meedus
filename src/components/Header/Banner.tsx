@@ -63,4 +63,4 @@ const Banner: React.FC<IProps> = observer(({ closed, setClosed }) => {
     </Root>
   );
 });
-export default Banner;
+// export default Banner;
