@@ -5,6 +5,9 @@ import { ROUTES } from "@src/constants";
 import AchievementsScreen from "@screens/AchievementsScreen";
 import NameServiceScreen from "@screens/NameServiceScreen";
 import AuctionScreen from "@screens/AuctionScreen";
+// import MarketplaceScreen from "@screens/MarketplaceScreen";
+import MarketplaceScreen from "@screens/MarketplaceScreen/MarketplaceScreen";
+
 
 interface IProps {}
 
@@ -13,9 +16,10 @@ const App: React.FunctionComponent<IProps> = () => {
     <>
       <Routes>
         <Route path={ROUTES.ROOT} element={<AchievementsScreen />} />
+        <Route path={ROUTES.ROOT} element={<MarketplaceScreen />} />
         <Route path={ROUTES.NAMESERVICE} element={<NameServiceScreen />} />
         <Route path={ROUTES.AUCTION} element={<AuctionScreen />} />
-        {/*<Route path={ROUTES.PARTNERS} element={<PartnersScreen />} />*/}
+        {/* <Route path={ROUTES.PARTNERS} element={<PartnersScreen />} /> */}
         <Route path="*" element={<Navigate to={ROUTES.ROOT} />} />
       </Routes>
       <LoginScreen />
