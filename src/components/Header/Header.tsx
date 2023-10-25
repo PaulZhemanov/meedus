@@ -9,6 +9,11 @@ import BottomMenu from "@components/BottomMenu";
 import Text from "@components/Text";
 import { ReactComponent as BurgerIcon } from "@src/assets/icons/burger.svg";
 import { ROUTES } from "@src/constants";
+import Input from "../Input";
+import {
+  AchievementsScreenVMProvider,
+  useAchievementsScreenVM,
+} from "@screens/AchievementsScreen/AchievementsScreenVm"
 // import Banner from "./Banner";
 
 interface IProps {}
@@ -103,6 +108,8 @@ const menuItems = [
 const Header: React.FC<IProps> = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+    const vm = useAchievementsScreenVM()
+
   // const [bannerClosed, setBannerClosed] = useState(false);
 
   return (
@@ -112,7 +119,14 @@ const Header: React.FC<IProps> = () => {
         <a href="https://meedus.space">
           <Logo src={logo} />
         </a>
-        <MenuWrapperDesktop>
+          <Input
+            value={vm.search}
+            onChange={(e) => vm.setSearch(e.target.value)}
+            icon="search"
+            style={{ height: 40, maxWidth: 320 }}
+            placeholder="Search by name..."
+          />
+        {/* <MenuWrapperDesktop>
           {menuItems.map((item, i) => (
             <MenuItem
               key={i}
@@ -122,7 +136,7 @@ const Header: React.FC<IProps> = () => {
               {item.title}
             </MenuItem>
           ))}
-        </MenuWrapperDesktop>
+        </MenuWrapperDesktop> */}
         <Row alignItems="center" mainAxisSize="fit-content">
           <Wallet />
           <MenuWrapperMobile>
@@ -144,6 +158,6 @@ const Header: React.FC<IProps> = () => {
         </BottomMenu>
       </Root>
     </>
-  );
+  )
 };
 export default Header;

@@ -57,11 +57,12 @@ const Title = styled.div`
   color: #000000;
   max-width: 690px;
   margin-bottom: 40px;
+  
 
   @media (min-width: 768px) {
     font-size: 56px;
     line-height: 64px;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -77,7 +78,7 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
     <Root>
       <Title>Explore the Best Items on Fuel Ecosystem</Title>
       <Row alignItems="center" justifyContent="space-between">
-        <Button
+        {/* <Button
           style={{ maxWidth: 160, minWidth: 100, marginRight: 16 }}
           size="medium"
           disabled={accountStore.address == null || vm.updateLoading}
@@ -85,17 +86,17 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
           onClick={vm.syncProgress}
         >
           {vm.updateLoading ? <Spinner size={16} /> : "Check All Eligibility"}
-        </Button>
-        <Input
+        </Button> */}
+        {/* <Input
           value={vm.search}
           onChange={(e) => vm.setSearch(e.target.value)}
           icon="search"
           style={{ height: 48, maxWidth: 320 }}
-          placeholder="Search in Meedus…"
-        />
+          placeholder="Search by name..."
+        /> */}
       </Row>
-      <SizedBox height={36} />
-      <Tabs
+      {/* <SizedBox height={36} /> */}
+      {/* <Tabs
         activeTab={vm.tab}
         setActive={vm.setTab}
         tabs={[
@@ -103,8 +104,8 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
           { name: "Unlocked", additionalInfo: vm.unlockedBadges.length },
           { name: "Locked", additionalInfo: vm.lockedBadges.length },
         ]}
-      />
-      <SizedBox height={40} />
+      /> */}
+      {/* <SizedBox height={40} /> */}
       <BadgesGrid>
         {vm.filteredBadges.map((badge) => (
           <Badge
