@@ -84,7 +84,7 @@ const MobileMenuItem = styled(Text)<{ selected: boolean }>`
 
 const menuItems = [
   {
-    title: "Achievements",
+    title: "Marketplace",
     link: ROUTES.ROOT,
     routes: [ROUTES.ROOT],
   },
@@ -94,16 +94,16 @@ const menuItems = [
     routes: [ROUTES.NAMESERVICE, ROUTES.AUCTION],
   },
   // {
-  //   title: "Partners",
+  //   title: "Marketplace",
   //   link: ROUTES.PARTNERS,
   //   routes: [ROUTES.PARTNERS],
   // },
-];
+]
 
 const Header: React.FC<IProps> = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const [bannerClosed, setBannerClosed] = useState(false);
+  // const [bannerClosed, setBannerClosed] = useState(false);
 
   return (
     <>

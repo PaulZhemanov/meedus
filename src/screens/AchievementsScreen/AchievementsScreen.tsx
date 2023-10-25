@@ -21,7 +21,7 @@ const Root = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   box-sizing: border-box;
   padding: 0 16px;
   height: 100%;
@@ -52,7 +52,7 @@ const Title = styled.div`
   font-weight: 700;
   font-size: 40px;
   line-height: 48px;
-  text-align: center;
+  text-align: start;
   letter-spacing: -0.01em;
   color: #000000;
   max-width: 690px;
@@ -75,7 +75,7 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
     </Root>
   ) : (
     <Root>
-      <Title>Explore Achievements of Fuel Ecosystem</Title>
+      <Title>Explore the Best Items on Fuel Ecosystem</Title>
       <Row alignItems="center" justifyContent="space-between">
         <Button
           style={{ maxWidth: 160, minWidth: 100, marginRight: 16 }}
@@ -118,7 +118,7 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
       </BadgesGrid>
       <SizedBox height={48} />
     </Root>
-  );
+  )
 });
 
 const AchievementsScreen = () => (

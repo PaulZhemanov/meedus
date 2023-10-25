@@ -6,6 +6,7 @@ export const ROUTES = {
   NAMESERVICE: "/nameservice",
   PARTNERS: "/partners",
   AUCTION: "/auction/:name/:bg",
+  MARKETPLACE: "/marketplace"
 };
 
 export const CORE = "3P7NhmDt31ekQ2JryxtmdgZ1DXgVPwyocJK";
