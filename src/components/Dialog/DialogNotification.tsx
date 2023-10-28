@@ -9,7 +9,7 @@ import styled from "@emotion/styled";
 import Button from "@components/Button";
 
 export interface IDialogNotificationProps extends IDialogPropTypes {
-  title: string;
+  title?: string;
   description?: string;
   domain?: string;
   icon?: JSX.Element;

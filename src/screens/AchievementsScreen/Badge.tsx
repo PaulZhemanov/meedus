@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, {useState} from "react";
 import useElementSize from "@src/hooks/useElementSize";
 import SizedBox from "@components/SizedBox";
 import { Column, Row } from "@src/components/Flex";
@@ -11,6 +11,7 @@ import Button from "@components/Button";
 import ProgressBar from "@components/ProgressBar";
 import Spinner from "@components/Spinner";
 import dayjs from "dayjs";
+import DialogNotification from "@components/Dialog/DialogNotification";
 
 interface IProps {
   badge: TBadge & { progress?: TCheckScriptResult };
@@ -109,6 +110,7 @@ const Badge: React.FC<IProps> = ({
   mintedTimestamp,
 }) => {
   const [squareRef, { width }] = useElementSize();
+  const [visible, setVisible] = useState(false);
 
   return (
     <Root ref={squareRef}>
@@ -143,6 +145,12 @@ const Badge: React.FC<IProps> = ({
         </Text>
       </Column>
       <Text size="medium">{badge.description}</Text>
+      <Button onClick={() => setVisible(true)}>Buy NFT</Button>
+      <DialogNotification visible={visible}
+                          onClose={() => setVisible(false)}
+                          title='Buy NFT'
+                          type="warning"
+                          />
       {badge.progress &&
         (badge.progress.actualActionValue >=
         badge.progress.requiredActionValue ? (
@@ -187,6 +195,7 @@ const Badge: React.FC<IProps> = ({
                 .toNumber()}
             />
           </ProgressWrapper>
+
         ))}
     </Root>
   );

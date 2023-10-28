@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import React from "react";
-import { observer } from "mobx-react-lite";
+import React, {useState} from "react";
+import {observer} from "mobx-react-lite";
 import Layout from "@components/Layout";
 import Input from "@components/Input";
 import SizedBox from "@components/SizedBox";
@@ -11,11 +11,13 @@ import {
   useAchievementsScreenVM,
 } from "@screens/AchievementsScreen/AchievementsScreenVm";
 import Spinner from "@components/Spinner";
-import { Row } from "@src/components/Flex";
+import {Row} from "@src/components/Flex";
 import Button from "@components/Button";
-import { useStores } from "@stores";
+import {useStores} from "@stores";
+import DialogNotification from "@components/Dialog/DialogNotification";
 
-interface IProps {}
+interface IProps {
+}
 
 const Root = styled.div`
   display: flex;
@@ -32,7 +34,7 @@ const Root = styled.div`
   margin: 40px 0;
   @media (min-width: 1280px) {
     padding: 0 24px;
-  } ;
+  };
 `;
 
 const BadgesGrid = styled.div`
@@ -45,7 +47,7 @@ const BadgesGrid = styled.div`
   }
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr;
-  } ;
+  };
 `;
 
 const Title = styled.div`
@@ -57,7 +59,7 @@ const Title = styled.div`
   color: #000000;
   max-width: 690px;
   margin-bottom: 40px;
-  
+
 
   @media (min-width: 768px) {
     font-size: 56px;
@@ -67,12 +69,12 @@ const Title = styled.div`
 `;
 
 const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
-  const { accountStore } = useStores();
+  const {accountStore} = useStores();
   const vm = useAchievementsScreenVM();
-
+  const [visible, setVisible] = useState(false);
   return vm.loading ? (
-    <Root style={{ justifyContent: "center", height: "100%" }}>
-      <Spinner size={48} />
+    <Root style={{justifyContent: "center", height: "100%"}}>
+      <Spinner size={48}/>
     </Root>
   ) : (
     <Root>
@@ -107,6 +109,7 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
       /> */}
       {/* <SizedBox height={40} /> */}
       <BadgesGrid>
+      {/*<BadgesGrid onClick={()=>setVisible(true)}>*/}
         {vm.filteredBadges.map((badge) => (
           <Badge
             badge={badge}
@@ -117,7 +120,14 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
           />
         ))}
       </BadgesGrid>
-      <SizedBox height={48} />
+
+      {/*<DialogNotification visible={visible}*/}
+      {/*                    onClose={() => setVisible(false)}*/}
+      {/*                    title='Buy NFT'*/}
+      {/*                    type="warning"*/}
+      {/*                    description='dgfdf'/>*/}
+
+      <SizedBox height={48}/>
     </Root>
   )
 });
@@ -125,7 +135,7 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
 const AchievementsScreen = () => (
   <AchievementsScreenVMProvider>
     <Layout>
-      <AchievementsScreenImpl />
+      <AchievementsScreenImpl/>
     </Layout>
   </AchievementsScreenVMProvider>
 );
