@@ -2,7 +2,7 @@ import axios from "axios";
 
 export type TBadgeType =
   | "invoke"
-  // | "receive"
+  //| "receive"
   | "transactions"
   | "firstTransaction";
 

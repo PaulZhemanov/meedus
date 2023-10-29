@@ -109,7 +109,6 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
       /> */}
       {/* <SizedBox height={40} /> */}
       <BadgesGrid>
-      {/*<BadgesGrid onClick={()=>setVisible(true)}>*/}
         {vm.filteredBadges.map((badge) => (
           <Badge
             badge={badge}
@@ -120,13 +119,6 @@ const AchievementsScreenImpl: React.FC<IProps> = observer(() => {
           />
         ))}
       </BadgesGrid>
-
-      {/*<DialogNotification visible={visible}*/}
-      {/*                    onClose={() => setVisible(false)}*/}
-      {/*                    title='Buy NFT'*/}
-      {/*                    type="warning"*/}
-      {/*                    description='dgfdf'/>*/}
-
       <SizedBox height={48}/>
     </Root>
   )
