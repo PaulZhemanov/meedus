@@ -5,7 +5,9 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: #fff;
     user-select: none;
+
 }
+
 
 #root {
     display: flex;

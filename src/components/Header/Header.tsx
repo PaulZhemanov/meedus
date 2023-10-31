@@ -37,6 +37,9 @@ const Root = styled.div`
 `;
 const Logo = styled.img`
   height: 48px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.02)
 `;
 
 const MenuWrapperDesktop = styled.div`
@@ -117,7 +120,8 @@ const Header: React.FC<IProps> = () => {
       {/* <Banner closed={bannerClosed} setClosed={setBannerClosed} /> */}
       <Root>
         <a href="https://meedus.space">
-          <Logo src={logo} />
+          <Logo src={logo}
+          />
         </a>
           <Input
             value={vm.search}

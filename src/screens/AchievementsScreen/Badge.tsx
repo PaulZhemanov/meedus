@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import useElementSize from "@src/hooks/useElementSize";
 import SizedBox from "@components/SizedBox";
-import {Column, Row} from "@src/components/Flex";
+import { Column, Row } from "@src/components/Flex";
 import Text from "@components/Text";
-import {TBadge, TCheckScriptResult} from "@src/services/badgesService";
-import {ReactComponent as Logo} from "@src/assets/images/roundLogo.svg";
+import { TBadge, TCheckScriptResult } from "@src/services/badgesService";
+import { ReactComponent as Logo } from "@src/assets/images/roundLogo.svg";
 import BN from "@src/utils/BN";
 import Button from "@components/Button";
 import ProgressBar from "@components/ProgressBar";
@@ -13,7 +13,6 @@ import Spinner from "@components/Spinner";
 import dayjs from "dayjs";
 import DialogNotification from "@components/Dialog/DialogNotification";
 import NftPreview from "@screens/AchievementsScreen/NftPreview";
-
 
 const Root = styled.div`
   display: flex;
@@ -66,11 +65,11 @@ const ProgressWrapper = styled.div`
 `;
 
 const tagsColors: Record<string, string> = {
-    Ecosystem: "#000",
-    DeFi: "#C1BFFF",
-    NFT: "#FF938C",
-    DAO: "#FFDEA6",
-    General: "#A5FFC9",
+  Ecosystem: "#000",
+  DeFi: "#C1BFFF",
+  NFT: "#FF938C",
+  DAO: "#FFDEA6",
+  General: "#A5FFC9",
 };
 
 const UnlockedContainer = styled(Row)`
@@ -91,108 +90,88 @@ const Round = styled.div`
 `;
 
 interface IProps {
-    badge: TBadge & { progress?: TCheckScriptResult };
-    onMint: () => void;
-    loading?: boolean;
-    mintedTimestamp?: number;
+  badge: TBadge & { progress?: TCheckScriptResult };
+  onMint: () => void;
+  loading?: boolean;
+  mintedTimestamp?: number;
 }
 
-const Badge: React.FC<IProps> = ({
-                                     badge,
-                                     onMint,
-                                     loading,
-                                     mintedTimestamp,
-                                 }) => {
-    const [squareRef, {width}] = useElementSize();
-    const [visible, setVisible] = useState(false);
+const Badge: React.FC<IProps> = ({ badge, onMint, loading, mintedTimestamp }) => {
+  const [squareRef, { width }] = useElementSize();
+  const [visible, setVisible] = useState(false);
 
-
-    return (
-      <Root ref={squareRef}>
-          <Column crossAxisSize="max">
-              <NftPreview
-                style={{height: `${width}px`}}
-                src={!!badge.link ? badge.link : undefined}
-              />
-              <SizedBox height={16}/>
-              <Row alignItems="center" justifyContent="space-between">
-                  <Row alignItems="center">
-                      <IssuerPreview/>
-                      <SizedBox width={12}/>
-                      {/*todo*/}
-                      <Text size="medium">Meedus</Text>
-                  </Row>
-                  <TagsContainer>
-                      {badge.category.map((v, i) => {
-                          const background = tagsColors[v] ?? "#EEEEEE";
-                          const color = background === "#000" ? "white" : "#000";
-                          return (
-                            <Tag key={i} style={{background, color}}>
-                                {v}
-                            </Tag>
-                          );
-                      })}
-                  </TagsContainer>
-              </Row>
-              <SizedBox height={16}/>
-              <Text size="title" weight={700}>
-                  {badge.name}
+  console.log(badge.link)!!!!!!;
+  return (
+    <Root ref={squareRef}>
+      <Column crossAxisSize="max">
+        <NftPreview style={{ height: `${width}px` }} src={!!badge.link ? badge.link : undefined} />
+        <SizedBox height={16} />
+        <Row alignItems="center" justifyContent="space-between">
+          <Row alignItems="center">
+            <IssuerPreview />
+            <SizedBox width={12} />
+            {/*todo*/}
+            <Text size="medium">Meedus</Text>
+          </Row>
+          <TagsContainer>
+            {badge.category.map((v, i) => {
+              const background = tagsColors[v] ?? "#EEEEEE";
+              const color = background === "#000" ? "white" : "#000";
+              return (
+                <Tag key={i} style={{ background, color }}>
+                  {v}
+                </Tag>
+              );
+            })}
+          </TagsContainer>
+        </Row>
+        <SizedBox height={16} />
+        <Text size="title" weight={700}>
+          {badge.name}
+        </Text>
+      </Column>
+      <Text size="medium">{badge.description}</Text>
+      <Button onClick={() => setVisible(true)}>Buy NFT</Button>
+      <DialogNotification visible={visible} onClose={() => setVisible(false)} title="Buy NFT" />
+      {badge.progress &&
+        (badge.progress.actualActionValue >= badge.progress.requiredActionValue ? (
+          mintedTimestamp ? (
+            <UnlockedContainer>
+              <Round />
+              <Column alignItems="center">
+                <Text size="medium" weight={700}>
+                  Unlocked
+                </Text>
+                <Text>{dayjs(mintedTimestamp).format("MMM DD, YYYY")}</Text>
+              </Column>
+            </UnlockedContainer>
+          ) : (
+            <Button disabled={loading} onClick={onMint} style={{ marginTop: 16 }}>
+              {loading ? <Spinner size={16} /> : "Mint"}
+            </Button>
+          )
+        ) : (
+          <ProgressWrapper>
+            <Row justifyContent="space-between">
+              <Text fitContent>
+                {badge.progress.actualActionValue}&nbsp;/&nbsp;
+                {badge.progress.requiredActionValue}
               </Text>
-          </Column>
-          <Text size="medium">{badge.description}</Text>
-          <Button onClick={() => setVisible(true)}>Buy NFT</Button>
-          <DialogNotification visible={visible}
-                              onClose={() => setVisible(false)}
-                              title='Buy NFT'
-                              type="warning"
-          />
-          {badge.progress &&
-            (badge.progress.actualActionValue >=
-            badge.progress.requiredActionValue ? (
-              mintedTimestamp ? (
-                <UnlockedContainer>
-                    <Round/>
-                    <Column alignItems="center">
-                        <Text size="medium" weight={700}>
-                            Unlocked
-                        </Text>
-                        <Text>{dayjs(mintedTimestamp).format("MMM DD, YYYY")}</Text>
-                    </Column>
-                </UnlockedContainer>
-              ) : (
-                <Button
-                  disabled={loading}
-                  onClick={onMint}
-                  style={{marginTop: 16}}
-                >
-                    {loading ? <Spinner size={16}/> : "Mint"}
-                </Button>
-              )
-            ) : (
-              <ProgressWrapper>
-                  <Row justifyContent="space-between">
-                      <Text fitContent>
-                          {badge.progress.actualActionValue}&nbsp;/&nbsp;
-                          {badge.progress.requiredActionValue}
-                      </Text>
-                      <Text fitContent>
-                          {new BN(badge.progress.actualActionValue)
-                            .div(badge.progress.requiredActionValue)
-                            .times(100)
-                            .toFormat(0)}
-                          %
-                      </Text>
-                  </Row>
-                  <SizedBox height={4}/>
-                  <ProgressBar
-                    progress={new BN(badge.progress.actualActionValue)
-                      .div(badge.progress.requiredActionValue)
-                      .toNumber()}
-                  />
-              </ProgressWrapper>
-
-            ))}
-      </Root>
-    );
+              <Text fitContent>
+                {new BN(badge.progress.actualActionValue)
+                  .div(badge.progress.requiredActionValue)
+                  .times(100)
+                  .toFormat(0)}
+                %
+              </Text>
+            </Row>
+            <SizedBox height={4} />
+            <ProgressBar
+              progress={new BN(badge.progress.actualActionValue).div(badge.progress.requiredActionValue).toNumber()}
+            />
+          </ProgressWrapper>
+        ))}
+    </Root>
+  );
 };
 export default Badge;
