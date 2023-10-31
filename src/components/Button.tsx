@@ -34,6 +34,7 @@ const Button = styled.button<{
     box-shadow: 2px 2px 0 #000000;
     background: ${({ kind }) => (kind === "secondary" ? "#EEEEEE" : "#71E0B8")};
     cursor: pointer;
+    transform: scale(1.02);
   }
 
   :disabled {
